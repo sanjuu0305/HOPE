@@ -1,0 +1,59 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/appointment")
+public class AppointmentServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/hope_db";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "password";
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String date = request.getParameter("date");
+        String department = request.getParameter("department");
+        String doctor = request.getParameter("doctor");
+        String message = request.getParameter("message");
+
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD)) {
+            String sql = "INSERT INTO appointments (name, email, phone, date, department, doctor, message) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.setString(2, email);
+            statement.setString(3, phone);
+            statement.setString(4, date);
+            statement.setString(5, department);
+            statement.setString(6, doctor);
+            statement.setString(7, message);
+
+            int rowsInserted = statement.executeUpdate();
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+            if (rowsInserted > 0) {
+                out.println("<h2>✅ Appointment booked successfully!</h2>");
+            } else {
+                out.println("<h2>❌ Failed to book appointment, pls try again.</h2>");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.getWriter().println("<h2>❌ Database error: " + e.getMessage() + "</h2>");
+        }
+    }
+}

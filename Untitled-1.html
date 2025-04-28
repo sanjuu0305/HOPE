@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Navigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .topbar {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .navbar {
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 2px;
+        }
+
+        .navbar .appointment-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .appointment-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">
+        <div>📧 contact@hopehospital.com</div>
+        <div>📞 +91 9876543210</div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">HOPE HOSPITAL</div>
+        <ul>
+            <li><a href="#billing">Billing</a></li>
+            <li><a href="#appointment">Appointment Timing</a></li>
+            <li><a href="#available-doctor">Available Doctor</a></li>
+            <li><a href="#department">Department</a></li>
+            <li><a href="#medicine">Medicine</a></li>
+            <li><a href="#services">Services</a></li>
+        </ul>
+        <a href="#make-appointment" class="appointment-btn">Make Appointment</a>
+    </nav>
+
+</body>
+</html>

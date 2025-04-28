@@ -1,0 +1,19 @@
+document.querySelector('.php-email-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(this);
+  
+  fetch('appointment.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+    // Show success message on page
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    // Show error message on page
+  });
+});
